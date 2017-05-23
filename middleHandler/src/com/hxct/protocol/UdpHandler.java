@@ -75,6 +75,8 @@ public class UdpHandler implements IHandler {
 			{
 				try {
 					ds.send(dp_send);
+					String v = DataConvert.bytesToHexString(dp_send.getData(), true, true);
+					System.out.println("send data value is:"+v);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
