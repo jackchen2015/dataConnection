@@ -38,12 +38,12 @@
         select * from onlinedata
     </select>
     <!-- 查询全部用户-->
-    <select id="getCurrDayData" parameterType="string" resultType="com.hxct.po.OnLineData">
-        select userId,userMac,nasIp,loginTime,logoutTime,onlineSec,createTime,authenMethod,userName,wirelessSSID,wirelessApMac from ipcdb.dbo.t_online_detail where loginTime>#{loginTime}
-    </select>
 <!--     <select id="getCurrDayData" parameterType="string" resultType="com.hxct.po.OnLineData">
-        select a.userId,userMac,a.nasIp,loginTime,logoutTime,onlineSec,createTime,authenMethod,userName,wirelessSSID,wirelessApMac,osType from ipcdb.dbo.t_online_detail a, ipcdb.dbo.t_mobile_terminal b where loginTime>#{loginTime} and a.userMac=b.mac
+        select userId,userMac,nasIp,loginTime,logoutTime,onlineSec,createTime,authenMethod,userName,wirelessSSID,wirelessApMac from ipcdb.dbo.t_online_detail where loginTime>#{loginTime}
     </select> -->
+    <select id="getCurrDayData" parameterType="string" resultType="com.hxct.po.OnLineData">
+        select a.userId userId,userMac,a.nasIp nasip,loginTime,logoutTime,onlineSec,createTime,authenMethod,userName,wirelessSSID ssid,wirelessApMac apMac,osType from ipcdb.dbo.t_online_detail a left join ipcdb.dbo.t_mobile_terminal b on a.userMac=b.mac where loginTime>#{loginTime}
+    </select>
 	<insert id="insertBatch" parameterType="ArrayList">  
     insert into onlinedetail(userId,userMac,nasip,loginTime,logoutTime,onlineSec,createTime,
     authenMethod,userName,ssid,apMac) values 

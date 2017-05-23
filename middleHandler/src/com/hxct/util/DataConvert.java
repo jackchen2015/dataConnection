@@ -71,5 +71,21 @@ public class DataConvert {
 	      System.out.print(hex.toUpperCase() );    
 	    }    
 	   
-	 }	 
+	 }
+	 
+	 public static String getOsType(String strType)	 {
+		 if("ANDROID".equalsIgnoreCase(strType))
+		 {
+			 return "02";
+		 }
+		 else if("IOS".equalsIgnoreCase(strType))
+		 {
+			 return "01";
+		 }
+		 else if("WINDOW_MOBILE".equalsIgnoreCase(strType))
+		 {
+			 return "04";
+		 }
+		 return "99";
+	 }
 }

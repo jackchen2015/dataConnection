@@ -14,6 +14,7 @@ public class OnLineData {
 	private String userName;
 	private String ssid;
 	private String apMac;
+	private String osType = "99";
 	
 	public int getId() {
 		return id;
@@ -86,6 +87,12 @@ public class OnLineData {
 	}
 	public void setApMac(String apMac) {
 		this.apMac = apMac;
+	}
+	public String getOsType() {
+		return osType;
+	}
+	public void setOsType(String osType) {
+		this.osType = osType;
 	}
 	@Override
 	public String toString() {

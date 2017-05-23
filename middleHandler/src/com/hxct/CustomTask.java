@@ -13,6 +13,7 @@ import com.hxct.po.UserData;
 import com.hxct.protocol.IHandler;
 import com.hxct.protocol.UdpHandler;
 import com.hxct.util.Constants;
+import com.hxct.util.DataConvert;
 import com.hxct.util.MyBatisUtil;
 import com.hxct.util.MyBatisUtil.DataSourceEnvironment;
 
@@ -72,7 +73,17 @@ public class CustomTask extends TimerTask{
     		uData.setId_code(data.getUserId());
     		uData.setMac(data.getUserMac());
     		uData.setId_name(data.getUserName());
+    		String osType = data.getOsType();
+    		uData.setTerminal_system(DataConvert.getOsType(osType));
     		uDatas.add(uData);
+    	}
+    	if(!System.getProperty("senddata").equals("1"))
+    	{
+    		for(int i=0;i<10;i++)
+    		{
+    			System.out.println("data "+i+" is:"+uDatas.get(i));
+    		}
+    		return;
     	}
     	//发送数据线程
     	new Thread(new Runnable(){
