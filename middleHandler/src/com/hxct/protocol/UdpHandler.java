@@ -22,7 +22,7 @@ public class UdpHandler implements IHandler {
 
 	@Override
 	public void sendData(Object allUserData) {
-		List<UserData> userData = (List<UserData>) allUserData;
+		List<UserData> userDatas = (List<UserData>) allUserData;
 		DatagramSocket ds = null;
 		try {
 			ds = new DatagramSocket();
@@ -54,7 +54,7 @@ public class UdpHandler implements IHandler {
 			e1.printStackTrace();
 		} // 设置接收数据时阻塞的最长时间
 
-		for (UserData data : userData) {
+		for (UserData data : userDatas) {
 			String str_send = data.toString();
 			byte[] buf = new byte[1024];
 			// 客户端在9000端口监听接收到的数据

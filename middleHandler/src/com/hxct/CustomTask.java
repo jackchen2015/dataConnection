@@ -77,6 +77,7 @@ public class CustomTask extends TimerTask{
     		uData.setTerminal_system(DataConvert.getOsType(osType));
     		uDatas.add(uData);
     	}
+    	System.out.println("total record is:"+uDatas.size());
     	if(!System.getProperty("senddata").equals("1"))
     	{
     		for(int i=0;i<10;i++)
