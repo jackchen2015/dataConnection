@@ -29,7 +29,6 @@ public class DataDock
 //	private static String password = "c#6zw(qi";
 //	private static String iv = "salt#&@!";
     public static void main(String args[]){
-    	Properties prop = new Properties();
     	InputStream in = null;
     	try {
 			in = Resources.getResourceAsStream("resource.properties");
@@ -39,7 +38,6 @@ public class DataDock
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	DataDock dd = new DataDock();
     	TimeArrangeMent tam = new TimeArrangeMent();
     	tam.arrange();
     	}	

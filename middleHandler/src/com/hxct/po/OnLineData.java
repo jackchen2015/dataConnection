@@ -4,6 +4,7 @@ public class OnLineData {
 
 	private int id;
 	private String userId;
+	private String userIp;
 	private String userMac;
 	private String nasip;
 	private String loginTime;
@@ -27,6 +28,12 @@ public class OnLineData {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getUserIp() {
+		return userIp;
+	}
+	public void setUserIp(String userIp) {
+		this.userIp = userIp;
 	}
 	public String getUserMac() {
 		return userMac;

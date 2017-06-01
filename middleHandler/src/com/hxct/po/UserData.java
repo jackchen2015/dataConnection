@@ -15,20 +15,20 @@ import com.hxct.util.Constants;
 public class UserData
 {
 
-	private String version="";//版本号
+	private String version="4.3.1.1";//版本号
 	private int event_type = 40;//数据类型
-	private String doc_version="";//数据交换标准版本号
-	private int auth_type;//认证类型
-	private String auth_account="";
-	private int id_type = 19;
-	private String id_code="";
+	private String doc_version="4.3.1";//数据交换标准版本号
+	private int auth_type = 1020004;//认证类型 手机
+	private String auth_account="";//手机号码
+	private int id_type = 19;//手机
+	private String id_code="";//手机号码
 	private String id_name="";
 	private String app_company="";
 	private String app_name="";
 	private String app_version="";
 	private String app_authcode="";
-	private String location_code="";
-	private String location_type="";
+	private String location_code="4201052A000289";//附录7.上网服务场所编码命名规则
+	private String location_type="9";
 	private String login_at="";
 	private String mac="";
 	private String lan_ip="";
@@ -58,7 +58,7 @@ public class UserData
 	private String ssid="";
 	private String associated="";
 	private String floor="";
-	private int login_type;
+	private int login_type = 30;
 	private int plastersign;
 	
 	public String getVersion() {

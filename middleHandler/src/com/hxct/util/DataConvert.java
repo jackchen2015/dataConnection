@@ -88,4 +88,17 @@ public class DataConvert {
 		 }
 		 return "99";
 	 }
+	 
+	 public static String convertMacWithSplit(String mac) {
+		 if(mac!=null&&!mac.equals("")){
+			 if(mac.indexOf("-")<=0){
+				 String result = mac.substring(0,2);
+				 for(int i=1;i<6;i++){
+					 result += "-" + mac.substring(i*2, i*2+2);
+				 }
+				 return result;
+			 }
+		 }
+		 return mac;
+	 }
 }

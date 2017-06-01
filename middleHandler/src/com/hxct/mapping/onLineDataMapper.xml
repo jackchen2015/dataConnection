@@ -39,7 +39,7 @@
 		from ipcdb.dbo.t_online_detail where loginTime>#{loginTime} </select> -->
 	<select id="getCurrDayData" parameterType="string"
 		resultType="com.hxct.po.OnLineData">
-		select a.userId userId,userMac,a.nasIp
+		select a.userId userId, userIp, userMac,a.nasIp
 		nasip,loginTime,logoutTime,onlineSec,createTime,authenMethod,userName,wirelessSSID
 		ssid,wirelessApMac apMac,osType from ipcdb.dbo.t_online_detail a left
 		join ipcdb.dbo.t_mobile_terminal b on a.userMac=b.mac where

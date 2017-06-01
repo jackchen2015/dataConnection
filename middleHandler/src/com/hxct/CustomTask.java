@@ -50,6 +50,7 @@ public class CustomTask extends TimerTask{
         		old.setSsid("iwuhan-free");
         		old.setUserId("13554502434");
         		old.setUserMac("205D47A1F3C3");
+        		old.setUserIp("172.16.1.22");
         		old.setUserName("time");
         		allData.add(old);        		
         	}
@@ -65,13 +66,19 @@ public class CustomTask extends TimerTask{
     	for(OnLineData data:allData)
     	{
     		UserData uData = new UserData();
-    		uData.setApmac(data.getApMac());
+    		uData.setApmac(DataConvert.convertMacWithSplit(data.getApMac()));
     		uData.setSsid(data.getSsid());
     		uData.setAuth_type(data.getAuthenMethod());
-    		uData.setLogin_at(data.getLoginTime());
+    		String loginTime = data.getLoginTime();
+    		if(loginTime.length()>19)
+    		{
+    			loginTime = loginTime.substring(0, 19);
+    		}
+    		uData.setLogin_at(loginTime);
     		uData.setAuth_account(data.getUserId());
     		uData.setId_code(data.getUserId());
-    		uData.setMac(data.getUserMac());
+    		uData.setLan_ip(data.getUserIp());
+    		uData.setMac(DataConvert.convertMacWithSplit(data.getUserMac()));
     		uData.setId_name(data.getUserName());
     		String osType = data.getOsType();
     		uData.setTerminal_system(DataConvert.getOsType(osType));

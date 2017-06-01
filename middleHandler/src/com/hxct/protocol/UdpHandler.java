@@ -61,9 +61,9 @@ public class UdpHandler implements IHandler {
 			// 定义用来发送数据的DatagramPacket实例
 			byte[] enCodeDes = null;
 			try {
-				enCodeDes = DESUtil.CBCEncrypt(str_send.getBytes("UTF-8"), Constants.password.getBytes(),
+				enCodeDes = DESUtil.CBCEncrypt(str_send.getBytes(), Constants.password.getBytes(),
 						Constants.iv.getBytes());
-			} catch (UnsupportedEncodingException e1) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
