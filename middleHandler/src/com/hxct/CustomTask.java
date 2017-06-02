@@ -40,17 +40,19 @@ public class CustomTask extends TimerTask{
         	for(int i=0;i<100;i++)
         	{
         		OnLineData old = new OnLineData();
-        		old.setApMac("as-as-as-3s-af-aa");
-        		old.setAuthenMethod(1);
+        		old.setApMac("AB-02-CD-33-23-C0");
+        		old.setAuthenMethod(1020004);
         		old.setCreateTime("2017-02-11 01:22:22");
         		old.setLoginTime("2017-02-12 01:22:22");
         		old.setLogoutTime("2017-03-11 01:22:22");
         		old.setNasip("asdf");
-        		old.setOnlineSec(2);
+        		old.setOnlineSec(10+i);
         		old.setSsid("iwuhan-free");
         		old.setUserId("13554502434");
         		old.setUserMac("205D47A1F3C3");
+        		old.setOsType("android");
         		old.setUserIp("172.16.1.22");
+        		
         		old.setUserName("time");
         		allData.add(old);        		
         	}

@@ -43,7 +43,8 @@ public class TimeArrangeMent {
         Timer timer = new Timer();  
         CustomTask task = new CustomTask();  
         //安排指定的任务在指定的时间开始进行重复的固定延迟执行。  
-        timer.schedule(task, date, PERIOD_DAY);
+//        timer.schedule(task, date, PERIOD_DAY);
+        task.run();
     }
     // 增加或减少天数  
     public Date addDay(Date date, int num) {  

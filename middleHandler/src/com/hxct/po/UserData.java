@@ -32,31 +32,31 @@ public class UserData
 	private String login_at="";
 	private String mac="";
 	private String lan_ip="";
-	private String source_ip4="";
-	private String source_ip6="";
-	private int source_startport4;
-	private int source_endport4;	
-	private int source_startport6;
-	private int source_endport6;
-	private String apid="";
-	private String apmac="";
-	private String longitude="";
-	private String latitude="";
-	private String rssi="";
-	private String sessionid="";
-	private String x="";
-	private String y="";
+	private String source_ip4="121.2.2.2";
+	private String source_ip6="CDCD:910A:2222:5498:1111:3900:2020";
+	private int source_startport4 = 0;
+	private int source_endport4 = 65535;	
+	private int source_startport6 = 0;
+	private int source_endport6 = 65535;
+	private String apid="723005104ECD68A00509F";
+	private String apmac="EC-D6-8A-00-50-9F";
+	private String longitude="0.0";
+	private String latitude="0.0";
+	private String rssi="-1";
+	private String sessionid="4201052A000289A4C3618F37FA14963706311";
+	private String x="0";
+	private String y="0";
 	private String imsi="";
 	private String device_id="";
 	private String terminal_system="";
-	private String terminal_brand="";
-	private String terminal_brandtype="";
+	private String terminal_brand="99";
+	private String terminal_brandtype="0";
 	private int source = 95;
-	private int isp_id = 1;
-	private String wan_ip="";
+	private String isp_id = "01";
+	private String wan_ip="122.12.122.2";
 	private int source_port;
 	private String ssid="";
-	private String associated="";
+	private String associated="0";
 	private String floor="";
 	private int login_type = 30;
 	private int plastersign;
@@ -283,10 +283,10 @@ public class UserData
 	public void setSource(int source) {
 		this.source = source;
 	}
-	public int getIsp_id() {
+	public String getIsp_id() {
 		return isp_id;
 	}
-	public void setIsp_id(int isp_id) {
+	public void setIsp_id(String isp_id) {
 		this.isp_id = isp_id;
 	}
 	public String getWan_ip() {
@@ -333,20 +333,29 @@ public class UserData
 	}
 	@Override
 	public String toString() {
-		return version +Constants.splitChar + event_type + Constants.splitChar + doc_version
-				+ Constants.splitChar + auth_type + Constants.splitChar + auth_account + Constants.splitChar + id_type + Constants.splitChar
-				+ id_code + Constants.splitChar + id_name + Constants.splitChar + app_company + Constants.splitChar + app_name
-				+ Constants.splitChar + app_version + Constants.splitChar + app_authcode + Constants.splitChar + location_code
-				+ Constants.splitChar + location_type + Constants.splitChar + login_at + Constants.splitChar + mac + Constants.splitChar + lan_ip
-				+ Constants.splitChar + source_ip4 + Constants.splitChar + source_ip6 + Constants.splitChar
-				+ source_startport4 + Constants.splitChar + source_endport4 + Constants.splitChar
-				+ source_startport6 + Constants.splitChar + source_endport6 + Constants.splitChar + apid + Constants.splitChar + apmac
-				+ Constants.splitChar + longitude + Constants.splitChar + latitude + Constants.splitChar + rssi + Constants.splitChar + sessionid
-				+ Constants.splitChar + x + Constants.splitChar + y + Constants.splitChar + imsi + Constants.splitChar + device_id + Constants.splitChar
-				+ terminal_system + Constants.splitChar + terminal_brand + Constants.splitChar + terminal_brandtype
-				+ Constants.splitChar + source + Constants.splitChar + isp_id + Constants.splitChar + wan_ip + Constants.splitChar + source_port
-				+ Constants.splitChar + ssid + Constants.splitChar + associated + Constants.splitChar + floor + Constants.splitChar + login_type
-				+ Constants.splitChar + plastersign + Constants.splitChar;
+		return version +Constants.splitChar + event_type + Constants.splitChar + 
+				doc_version	+ Constants.splitChar + auth_type + Constants.splitChar + 
+				auth_account + Constants.splitChar + id_type + Constants.splitChar + 
+				id_code + Constants.splitChar + id_name + Constants.splitChar + 
+				app_company + Constants.splitChar + app_name + Constants.splitChar + 
+				app_version + Constants.splitChar + app_authcode + Constants.splitChar + 
+				location_code + Constants.splitChar + location_type + Constants.splitChar + 
+				login_at + Constants.splitChar + mac + Constants.splitChar + 
+				lan_ip	+ Constants.splitChar + source_ip4 + Constants.splitChar + 
+				source_ip6 + Constants.splitChar + source_startport4 + Constants.splitChar + 
+				source_endport4 + Constants.splitChar + source_startport6 + Constants.splitChar + 
+				source_endport6 + Constants.splitChar + apid + Constants.splitChar + 
+				apmac + Constants.splitChar + longitude + Constants.splitChar + 
+				latitude + Constants.splitChar + rssi + Constants.splitChar + 
+				sessionid + Constants.splitChar + x + Constants.splitChar + 
+				y + Constants.splitChar + imsi + Constants.splitChar + device_id + 
+				Constants.splitChar	+ terminal_system + Constants.splitChar + 
+				terminal_brand + Constants.splitChar + terminal_brandtype + Constants.splitChar + 
+				source + Constants.splitChar + isp_id + Constants.splitChar + 
+				wan_ip + Constants.splitChar + source_port + Constants.splitChar + 
+				ssid + Constants.splitChar + associated + Constants.splitChar + 
+				floor + Constants.splitChar + login_type + Constants.splitChar + 
+				plastersign + Constants.splitChar;
 	}
 
 	

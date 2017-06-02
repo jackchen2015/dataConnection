@@ -10,6 +10,10 @@ public class Constants {
     public static final int MAXNUM = 5;      //设置重发数据的最多次数 
     public static String password = "c#6zw(qi";
     public static String iv = "salt#&@!";
+//    public static String password = "xw$@ghjt";
+//    public static String iv = "salt#&@!";
+    public static String dePassword = "xw$@xwjm";
+    public static String deIv = "pass#&@!";
     public static final char splitChar = '\u0001';
     public static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
 }

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.codec.binary.Base64;
+
 import com.hxct.DataDock;
 import com.hxct.po.UserData;
 import com.hxct.util.Constants;
@@ -60,14 +62,17 @@ public class UdpHandler implements IHandler {
 			// 客户端在9000端口监听接收到的数据
 			// 定义用来发送数据的DatagramPacket实例
 			byte[] enCodeDes = null;
+
 			try {
-				enCodeDes = DESUtil.CBCEncrypt(str_send.getBytes(), Constants.password.getBytes(),
+				enCodeDes = DESUtil.CBCEncrypt(str_send.getBytes("UTF-8"), Constants.password.getBytes(),
 						Constants.iv.getBytes());
+//				byte[] deCode = DESUtil.CBCDecrypt(enCodeDes, Constants.password.getBytes(), Constants.iv.getBytes());
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			DatagramPacket dp_send = new DatagramPacket(enCodeDes, enCodeDes.length, loc, Integer.parseInt(remotePort));
+			String bstr = Base64.encodeBase64String(enCodeDes);
+			DatagramPacket dp_send = new DatagramPacket(bstr.getBytes(), bstr.getBytes().length, loc, Integer.parseInt(remotePort));
 			// 定义用来接收数据的DatagramPacket实例
 			DatagramPacket dp_receive = new DatagramPacket(buf, 1024);
 			// 数据发向本地3000端口

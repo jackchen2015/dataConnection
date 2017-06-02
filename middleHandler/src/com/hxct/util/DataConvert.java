@@ -101,4 +101,17 @@ public class DataConvert {
 		 }
 		 return mac;
 	 }
+	 
+	     public static String byteToHexString(byte[] bytes) {  
+		         StringBuffer sb = new StringBuffer(bytes.length);  
+		         String sTemp;  
+		         for (int i = 0; i < bytes.length; i++) {  
+		             sTemp = Integer.toHexString(0xFF & bytes[i]);  
+		             if (sTemp.length() < 2)  
+		                 sb.append(0);  
+		             sb.append(sTemp.toUpperCase());  
+		         }  
+		         return sb.toString();  
+		     }
+	 
 }
