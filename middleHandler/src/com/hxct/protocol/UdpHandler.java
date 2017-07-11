@@ -62,7 +62,6 @@ public class UdpHandler implements IHandler {
 			// 客户端在9000端口监听接收到的数据
 			// 定义用来发送数据的DatagramPacket实例
 			byte[] enCodeDes = null;
-
 			try {
 				enCodeDes = DESUtil.CBCEncrypt(str_send.getBytes("UTF-8"), Constants.password.getBytes(),
 						Constants.iv.getBytes());

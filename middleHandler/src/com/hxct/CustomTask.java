@@ -93,20 +93,21 @@ public class CustomTask extends TimerTask{
     		{
     			System.out.println("data "+i+" is:"+uDatas.get(i));
     		}
-    		return;
     	}
-    	//发送数据线程
-    	new Thread(new Runnable(){
+    	else{
+        	//发送数据线程
+        	new Thread(new Runnable(){
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				long threadBeginTime = System.currentTimeMillis();
-		    	IHandler handler = new UdpHandler();
-		    	handler.sendData(uDatas);
-		    	System.out.println("send data thread end it cast time:"+(System.currentTimeMillis()-threadBeginTime));
-				
-			}}).start();
+    			@Override
+    			public void run() {
+    				// TODO Auto-generated method stub
+    				long threadBeginTime = System.currentTimeMillis();
+    		    	IHandler handler = new UdpHandler();
+    		    	handler.sendData(uDatas);
+    		    	System.out.println("send data thread end it cast time:"+(System.currentTimeMillis()-threadBeginTime));
+    				
+    			}}).start();    		
+    	}
     	//保存数据线程
     	if(!System.getProperty("savedb").equals("1"))
     	{

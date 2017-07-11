@@ -13,10 +13,10 @@
 	<!-- 创建用户(Create) -->
 	<insert id="addOnlineData" parameterType="com.hxct.po.OnLineData">
 		insert into
-		onlinedata(userId,userMac,nasip,loginTime,logoutTime,onlineSec,createTime,
-		authenMethod,userName,ssid,apMac)
-		values(#{userId},#{userMac},#{nasip},#{loginTime}
-		,#{logoutTime},#{onlineSec},#{createTime},#{authenMethod},#{userName},#{ssid},#{apMac})
+		onlinedata(userId,userIp,userMac,nasip,loginTime,logoutTime,onlineSec,createTime,
+		authenMethod,userName,ssid,apMac,osType)
+		values(#{userId},#{userIp},#{userMac},#{nasip},#{loginTime}
+		,#{logoutTime},#{onlineSec},#{createTime},#{authenMethod},#{userName},#{ssid},#{apMac},#{osType})
 	</insert>
 
 	<!-- 删除用户(Remove) -->
@@ -47,11 +47,11 @@
 	</select>
 	<insert id="insertBatch" parameterType="ArrayList">
 		insert into
-		onlinedetail(userId,userMac,nasip,loginTime,logoutTime,onlineSec,createTime,
-		authenMethod,userName,ssid,apMac) values
+		onlinedetail(userId,userIp,userMac,nasip,loginTime,logoutTime,onlineSec,createTime,
+		authenMethod,userName,ssid,apMac, osType) values
 		<foreach collection="list" item="obj" index="index" separator=",">
-			(#{obj.userId},#{obj.userMac},#{obj.nasip},#{obj.loginTime},#{obj.logoutTime},#{obj.onlineSec},#{obj.createTime},
-			#{obj.authenMethod},#{obj.userName},#{obj.ssid},#{obj.apMac})
+			(#{obj.userId},#{obj.userIp},#{obj.userMac},#{obj.nasip},#{obj.loginTime},#{obj.logoutTime},#{obj.onlineSec},#{obj.createTime},
+			#{obj.authenMethod},#{obj.userName},#{obj.ssid},#{obj.apMac},#{obj.osType})
 		</foreach>
 	</insert>
 
