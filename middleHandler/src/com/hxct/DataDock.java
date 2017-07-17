@@ -7,9 +7,9 @@ package com.hxct;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.log4j.Logger;
 
 import com.hxct.util.TimeArrangeMent;
 
@@ -20,6 +20,7 @@ import com.hxct.util.TimeArrangeMent;
  */
 public class DataDock
 {
+	private static Logger logger = Logger.getLogger(DataDock.class.getName());
 
     /**
      * @param args the command line arguments
@@ -38,6 +39,8 @@ public class DataDock
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	logger.info("system startup......");
+
     	TimeArrangeMent tam = new TimeArrangeMent();
     	tam.arrange();
     	}	

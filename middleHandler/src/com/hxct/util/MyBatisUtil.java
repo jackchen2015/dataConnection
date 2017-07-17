@@ -11,10 +11,13 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
+
+import com.hxct.DataDock;
 
 public class MyBatisUtil {
 	
-	private static Log logger = LogFactory.getLog(MyBatisUtil.class);
+	private static Logger logger = Logger.getLogger(MyBatisUtil.class.getName());
 
     private static final Map<DataSourceEnvironment, SqlSessionFactory> SQLSESSIONFACTORYS   
     = new HashMap<DataSourceEnvironment, SqlSessionFactory>(); 	

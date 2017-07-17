@@ -39,7 +39,7 @@ public class TimeArrangeMent {
         //此时要在 第一次执行定时任务的时间加一天，以便此任务在下个时间点执行。如果不加一天，任务会立即执行。  
         if (date.before(new Date())) {  
             date = this.addDay(date, 1);  
-        }  
+        }
         Timer timer = new Timer();  
         CustomTask task = new CustomTask();  
         //安排指定的任务在指定的时间开始进行重复的固定延迟执行。  

@@ -6,7 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
 
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 
 import com.hxct.po.OnLineData;
 import com.hxct.po.UserData;
@@ -20,7 +23,7 @@ import com.hxct.util.MyBatisUtil.DataSourceEnvironment;
 public class CustomTask extends TimerTask{
 	
 	private List<OnLineData> allData = new ArrayList<OnLineData>();
-
+	private static Logger logger = Logger.getLogger(CustomTask.class.getName());
 	@Override
 	public void run() {
     	SqlSession mssqlSession = MyBatisUtil.getSqlSessionFactory(DataSourceEnvironment.MSSQL).openSession();
@@ -58,10 +61,10 @@ public class CustomTask extends TimerTask{
         	}
         }
         
-        System.out.println("all data is:"+allData.size());
+        logger.info("all data is:"+allData.size());
     	//send datas
 //        final List<OnLineData> alldata = new ArrayList<OnLineData>();
-        final long beginTime = System.currentTimeMillis();
+//        final long beginTime = System.currentTimeMillis();
 
     	//save datas
     	final List<UserData> uDatas = new ArrayList<UserData>();
@@ -86,12 +89,12 @@ public class CustomTask extends TimerTask{
     		uData.setTerminal_system(DataConvert.getOsType(osType));
     		uDatas.add(uData);
     	}
-    	System.out.println("total record is:"+uDatas.size());
+    	logger.info("total record is:"+uDatas.size());
     	if(!System.getProperty("senddata").equals("1"))
     	{
     		for(int i=0;i<10;i++)
     		{
-    			System.out.println("data "+i+" is:"+uDatas.get(i));
+    			logger.info("data "+i+" is:"+uDatas.get(i));
     		}
     	}
     	else{
@@ -104,8 +107,8 @@ public class CustomTask extends TimerTask{
     				long threadBeginTime = System.currentTimeMillis();
     		    	IHandler handler = new UdpHandler();
     		    	handler.sendData(uDatas);
-    		    	System.out.println("send data thread end it cast time:"+(System.currentTimeMillis()-threadBeginTime));
-    				
+    		    	logger.info("send data thread end it cast time:"+(System.currentTimeMillis()-threadBeginTime));
+    		    	uDatas.clear();
     			}}).start();    		
     	}
     	//保存数据线程
@@ -128,11 +131,10 @@ public class CustomTask extends TimerTask{
 		    			offset = allData.size() % 10000;
 		    		}
 		    		mysqlSession.insert("com.hxct.mapping.onLineDataMapper.insertBatch", allData.subList(i*10000, i*10000+offset-1));
-		    	}	    	
-		    	
-		    	System.out.println("Insert data, It cast time:"+(System.currentTimeMillis()-middleTime));
+		    	}
+		    	logger.info("Insert data, It cast time:"+(System.currentTimeMillis()-middleTime));
+		    	allData.clear();
 				
-			}}).start();				
+			}}).start();
 	}
-
 }

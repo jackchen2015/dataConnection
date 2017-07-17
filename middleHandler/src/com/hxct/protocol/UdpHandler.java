@@ -22,6 +22,8 @@ import com.hxct.util.DataConvert;
 
 public class UdpHandler implements IHandler {
 
+	private static Logger logger = Logger.getLogger(UdpHandler.class.getName());
+
 	@Override
 	public void sendData(Object allUserData) {
 		List<UserData> userDatas = (List<UserData>) allUserData;
@@ -80,7 +82,7 @@ public class UdpHandler implements IHandler {
 				try {
 					ds.send(dp_send);
 					String v = DataConvert.bytesToHexString(dp_send.getData(), true, true);
-					System.out.println("send data value is:"+v);
+					logger.info("send data value is:"+v);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -101,7 +103,7 @@ public class UdpHandler implements IHandler {
 				try {
 					ds.send(dp_send);
 					String v = DataConvert.bytesToHexString(dp_send.getData(), true, true);
-					System.out.println("value is:"+v);
+					logger.info("value is:"+v);
 					// 接收从服务端发送回来的数据
 					 ds.receive(dp_receive);
 				} catch (IOException e1) {
@@ -121,7 +123,7 @@ public class UdpHandler implements IHandler {
 					Logger.getLogger(DataDock.class.getName()).log(Level.SEVERE, null, ex);
 					// 如果接收数据时阻塞超时，重发并减少一次重发的次数
 					tries += 1;
-					System.out.println("Time out," + (Constants.MAXNUM - tries) + " more tries...");
+					logger.info("Time out," + (Constants.MAXNUM - tries) + " more tries...");
 				}
 			}
 			if (receivedResponse) {
@@ -135,7 +137,7 @@ public class UdpHandler implements IHandler {
 				dp_receive.setLength(1024);
 			} else {
 				// 如果重发MAXNUM次数据后，仍未获得服务器发送回来的数据，则打印如下信息
-				System.out.println("No response -- give up.");
+				logger.info("No response -- give up.");
 			}
 		}
 		ds.close();
