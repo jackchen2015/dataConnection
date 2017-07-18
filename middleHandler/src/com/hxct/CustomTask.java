@@ -1,13 +1,10 @@
 package com.hxct;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
 
-import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
@@ -22,7 +19,7 @@ import com.hxct.util.MyBatisUtil.DataSourceEnvironment;
 
 public class CustomTask extends TimerTask{
 	
-	private List<OnLineData> allData = new ArrayList<OnLineData>();
+	private List<OnLineData> allData = null;
 	private static Logger logger = Logger.getLogger(CustomTask.class.getName());
 	@Override
 	public void run() {
@@ -33,10 +30,12 @@ public class CustomTask extends TimerTask{
 //        List<OnLineData> alldata = mssqlmapper.getCurrDayData();
         Date date=new Date(new Date().getTime() - 24*60*60*1000);
         String strDate = Constants.df.format(date);// new Date()为获取当前系统时间
-        allData.clear();
+        allData = new ArrayList<OnLineData>();
         if(System.getProperty("getMssqlData").equals("1"))
         {
         	allData = mssqlSession.selectList("com.hxct.mapping.onLineDataMapper.getCurrDayData", strDate);
+        	mssqlSession.clearCache();
+        	mssqlSession.close();
         }
         else
         {
