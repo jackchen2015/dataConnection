@@ -7,6 +7,8 @@ package com.hxct;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.log4j.Logger;
@@ -21,6 +23,7 @@ import com.hxct.util.TimeArrangeMent;
 public class DataDock
 {
 	private static Logger logger = Logger.getLogger(DataDock.class.getName());
+	public static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3); 
 
     /**
      * @param args the command line arguments

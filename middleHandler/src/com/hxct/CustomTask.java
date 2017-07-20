@@ -23,6 +23,7 @@ public class CustomTask extends TimerTask{
 	private static Logger logger = Logger.getLogger(CustomTask.class.getName());
 	@Override
 	public void run() {
+		logger.info("customtask is startup");
     	SqlSession mssqlSession = MyBatisUtil.getSqlSessionFactory(DataSourceEnvironment.MSSQL).openSession();
         final SqlSession mysqlSession = MyBatisUtil.getSqlSessionFactory(DataSourceEnvironment.MYSQL).openSession();
 //        OnlineDataMapperI mssqlmapper = mssqlSession.getMapper(OnlineDataMapperI.class);
@@ -88,6 +89,7 @@ public class CustomTask extends TimerTask{
     		uData.setTerminal_system(DataConvert.getOsType(osType));
     		uDatas.add(uData);
     	}
+
     	logger.info("total record is:"+uDatas.size());
     	if(!System.getProperty("senddata").equals("1"))
     	{
@@ -98,7 +100,7 @@ public class CustomTask extends TimerTask{
     	}
     	else{
         	//发送数据线程
-        	new Thread(new Runnable(){
+    		DataDock.fixedThreadPool.execute(new Runnable(){
 
     			@Override
     			public void run() {
@@ -108,14 +110,14 @@ public class CustomTask extends TimerTask{
     		    	handler.sendData(uDatas);
     		    	logger.info("send data thread end it cast time:"+(System.currentTimeMillis()-threadBeginTime));
     		    	uDatas.clear();
-    			}}).start();    		
+    			}});    		
     	}
     	//保存数据线程
     	if(!System.getProperty("savedb").equals("1"))
     	{
     		return;
     	}
-    	new Thread(new Runnable(){
+    	DataDock.fixedThreadPool.execute(new Runnable(){
 
 			@Override
 			public void run() {
@@ -131,9 +133,11 @@ public class CustomTask extends TimerTask{
 		    		}
 		    		mysqlSession.insert("com.hxct.mapping.onLineDataMapper.insertBatch", allData.subList(i*10000, i*10000+offset-1));
 		    	}
+		    	mysqlSession.clearCache();
+		    	mysqlSession.close();
 		    	logger.info("Insert data, It cast time:"+(System.currentTimeMillis()-middleTime));
 		    	allData.clear();
 				
-			}}).start();
+			}});
 	}
 }

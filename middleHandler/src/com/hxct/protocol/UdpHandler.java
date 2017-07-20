@@ -26,6 +26,7 @@ public class UdpHandler implements IHandler {
 
 	@Override
 	public void sendData(Object allUserData) {
+		logger.info("begin send data......");
 		List<UserData> userDatas = (List<UserData>) allUserData;
 		DatagramSocket ds = null;
 		try {
@@ -81,8 +82,8 @@ public class UdpHandler implements IHandler {
 			{
 				try {
 					ds.send(dp_send);
-					String v = DataConvert.bytesToHexString(dp_send.getData(), true, true);
-					logger.info("send data value is:"+v);
+//					String v = DataConvert.bytesToHexString(dp_send.getData(), true, true);
+//					logger.info("send data value is:"+v);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -93,6 +94,11 @@ public class UdpHandler implements IHandler {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				continue;
+			}
+			if(true)
+			{
+				logger.info("send over......");
 				continue;
 			}
 			int tries = 0; // 重发数据的次数

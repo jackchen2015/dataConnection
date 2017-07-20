@@ -3,8 +3,6 @@ package com.hxct.util;
 public class DataConvert {
 	/**
 
-	 
-
 	 * Convert byte[] to hex string.这里我们可以将byte转换成int，然后利用Integer.toHexString(int)来转换成16进制字符串。   
 	 * @param src byte[] data   
 	 * @return hex string   
@@ -91,7 +89,7 @@ public class DataConvert {
 	 
 	 public static String convertMacWithSplit(String mac) {
 		 if(mac!=null&&!mac.equals("")){
-			 if(mac.indexOf("-")<=0){
+			 if(mac.indexOf("-")<=0){				 
 				 String result = mac.substring(0,2);
 				 for(int i=1;i<6;i++){
 					 result += "-" + mac.substring(i*2, i*2+2);
