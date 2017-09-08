@@ -61,7 +61,10 @@ public class CustomTask extends TimerTask{
         	}
         }
         
-        logger.info("all data is:"+allData.size());
+        if(allData.size()==0)
+        {
+        	return;
+        }
     	//send datas
 //        final List<OnLineData> alldata = new ArrayList<OnLineData>();
 //        final long beginTime = System.currentTimeMillis();
