@@ -29,7 +29,7 @@ public class CustomTask extends TimerTask{
 //        OnlineDataMapperI mssqlmapper = mssqlSession.getMapper(OnlineDataMapperI.class);
 //        OnlineDataMapperI mysqlmapper = mysqlSession.getMapper(OnlineDataMapperI.class);
 //        List<OnLineData> alldata = mssqlmapper.getCurrDayData();
-        Date date=new Date(new Date().getTime() - 24*60*60*1000);
+        Date date=new Date(new Date().getTime() - 2*24*60*60*1000);
         String strDate = Constants.df.format(date);// new Date()为获取当前系统时间
         allData = new ArrayList<OnLineData>();
         if(System.getProperty("getMssqlData").equals("1"))
