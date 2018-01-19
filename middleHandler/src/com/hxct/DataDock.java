@@ -24,6 +24,7 @@ public class DataDock
 {
 	private static Logger logger = Logger.getLogger(DataDock.class.getName());
 	public static ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3); 
+    private TimeArrangeMent tam = new TimeArrangeMent();
 
     /**
      * @param args the command line arguments
@@ -45,6 +46,13 @@ public class DataDock
     	logger.info("system startup......");
 
     	TimeArrangeMent tam = new TimeArrangeMent();
-    	tam.arrange();
-    	}	
+    	tam.arrange(true);
+    	}
+	public void start(boolean started)
+	{
+    	logger.info("system startup......");
+
+    	tam.arrange(started);
+		
+	}
 }

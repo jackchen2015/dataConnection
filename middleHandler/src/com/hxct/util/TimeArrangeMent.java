@@ -7,11 +7,16 @@ import java.util.Timer;
 import com.hxct.CustomTask;
 
 public class TimeArrangeMent {
-    /** 
+
+	
+    private Timer timer = new Timer("dataConnThread");  
+    private CustomTask task = new CustomTask();  
+	
+	/** 
      * @param args 
      */  
     public static void main(String[] args) {  
-        new TimeArrangeMent().arrange();    
+        new TimeArrangeMent().arrange(true);    
     }  
   
     //时间间隔(一天)  
@@ -19,7 +24,12 @@ public class TimeArrangeMent {
     public TimeArrangeMent() {  
     }
     
-    public void arrange(){
+    public void arrange(boolean started){
+		if(!started)
+		{
+			task.cancel();
+			return;
+		}
         Calendar calendar = Calendar.getInstance();
         String beginTime = System.getProperty("collect_data_time");
         int hTime = 3;
@@ -40,11 +50,10 @@ public class TimeArrangeMent {
         if (date.before(new Date())) {  
             date = this.addDay(date, 1);  
         }
-        Timer timer = new Timer("dataConnThread");  
-        CustomTask task = new CustomTask();  
         //安排指定的任务在指定的时间开始进行重复的固定延迟执行。  
         timer.schedule(task, date, PERIOD_DAY);
     }
+	
     // 增加或减少天数  
     public Date addDay(Date date, int num) {  
         Calendar startDT = Calendar.getInstance();  

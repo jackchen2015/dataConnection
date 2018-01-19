@@ -24,7 +24,7 @@ public enum MapperFactory {
           
         @Override  
         public <T> T createMapper(Class<? extends Mapper> clazz) {  
-            return createMapper(clazz, this);  
+            return MapperFactory.createMapper(clazz, this);  
         }  
           
         @Override  
@@ -42,7 +42,7 @@ public enum MapperFactory {
         private SqlSessionFactory sqlSessionFactory;  
         @Override  
         public <T> T createMapper(Class<? extends Mapper> clazz) {  
-            return createMapper(clazz, this);  
+            return MapperFactory.createMapper(clazz, this);  
         }  
           
         @Override  

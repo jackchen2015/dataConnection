@@ -11,6 +11,7 @@
 
 package com.hxct.ui;
 
+import com.hxct.DataDock;
 import java.awt.AWTException;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -20,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 /**
@@ -29,14 +31,18 @@ import javax.swing.ImageIcon;
 public class MainFrame extends javax.swing.JFrame
 {
 	private SystemTray tray;
-	private TrayIcon trayIcon;	
+	private TrayIcon trayIcon;
+	private DataDock dock = new DataDock();
 
     /** Creates new form MainFrame */
     public MainFrame()
 	{
         initComponents();
+		rbUdp.setSelected(true);
+		jPanel1.setBorder(BorderFactory.createTitledBorder("UDP"));
+		jPanel5.add(jPanel1);
  		if(SystemTray.isSupported())
-		{			
+		{
 			tray();
 		}
 	}
@@ -51,18 +57,156 @@ public class MainFrame extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        serverPort = new javax.swing.JTextField();
+        serverPortTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        serverIp = new javax.swing.JTextField();
-        protoCb = new javax.swing.JComboBox();
+        serverIpTxt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        timeoutTxt = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        ftpServerIp = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        ftpServerPort = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        ftpUserName = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        ftpPassword = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        ftpPath = new javax.swing.JTextField();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         saveDb = new javax.swing.JCheckBox();
         sendData = new javax.swing.JCheckBox();
-        startBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        startTime = new javax.swing.JFormattedTextField();
+        startBtn = new javax.swing.JToggleButton();
+        jPanel3 = new javax.swing.JPanel();
+        desRb = new javax.swing.JRadioButton();
+        rsaRb = new javax.swing.JRadioButton();
+        aesRb = new javax.swing.JRadioButton();
+        jPanel6 = new javax.swing.JPanel();
+        addDst = new javax.swing.JButton();
+        delDst = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        dstTable = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        rbTcp = new javax.swing.JRadioButton();
+        rbUdp = new javax.swing.JRadioButton();
+        rbFtp = new javax.swing.JRadioButton();
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("TCP/UDP"));
+
+        jLabel2.setText("服务器IP");
+
+        serverPortTxt.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                serverPortTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("服务器端口");
+
+        jLabel6.setText("超时时间");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(timeoutTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverIpTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverPortTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(serverIpTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(serverPortTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(timeoutTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("FTP"));
+
+        jLabel7.setText("服务器IP");
+
+        jLabel8.setText("端口");
+
+        jLabel9.setText("用户名");
+
+        jLabel10.setText("密码");
+
+        jLabel11.setText("路径");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ftpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftpServerIp, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftpServerPort, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftpUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftpPath, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(ftpServerIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(ftpServerPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(ftpUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(ftpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(ftpPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("用户控制台");
@@ -76,58 +220,18 @@ public class MainFrame extends javax.swing.JFrame
 
         jLabel1.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("公益WIFI数据融合平台参数配置");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("基础信息配置"));
-
-        jLabel2.setText("服务器IP地址");
-
-        jLabel4.setText("协议");
-
-        jLabel3.setText("服务器端口");
-
-        protoCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "UDP", "TCP" }));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(serverIp)
-                    .addComponent(protoCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(serverPort)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(protoCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(serverIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(serverPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        jLabel1.setText("公益WIFI数据融合控制台");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("采集数据配置"));
 
         saveDb.setText("是否保存数据库");
 
         sendData.setText("是否发送数据");
+
+        jLabel5.setText("采集开始时间(格式为H:mm:ss)");
+
+        startTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance())));
+        startTime.setText("00:00:00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -136,32 +240,227 @@ public class MainFrame extends javax.swing.JFrame
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sendData)
-                    .addComponent(saveDb))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(saveDb)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(sendData)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(startTime, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sendData)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sendData)
+                    .addComponent(jLabel5)
+                    .addComponent(startTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(saveDb)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         startBtn.setText("启动");
+        startBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                startBtnActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("加解密"));
+
+        buttonGroup2.add(desRb);
+        desRb.setText("DES");
+
+        buttonGroup2.add(rsaRb);
+        rsaRb.setText("RSA");
+
+        buttonGroup2.add(aesRb);
+        aesRb.setText("AES");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(desRb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rsaRb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aesRb)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(desRb)
+                    .addComponent(rsaRb)
+                    .addComponent(aesRb))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("数据转发"));
+
+        addDst.setText("添加");
+        addDst.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                addDstActionPerformed(evt);
+            }
+        });
+
+        delDst.setText("删除");
+        delDst.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                delDstActionPerformed(evt);
+            }
+        });
+
+        jPanel5.setLayout(new java.awt.CardLayout());
+
+        dstTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+
+            },
+            new String []
+            {
+                "协议", "加密方式", "服务器IP", "服务器端口"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(dstTable);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("协议选择"));
+
+        buttonGroup1.add(rbTcp);
+        rbTcp.setText("TCP");
+        rbTcp.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rbTcpActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rbUdp);
+        rbUdp.setText("UDP");
+        rbUdp.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rbUdpActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rbFtp);
+        rbFtp.setText("FTP");
+        rbFtp.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rbFtpActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbTcp)
+                    .addComponent(rbUdp)
+                    .addComponent(rbFtp))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbTcp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbUdp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbFtp)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delDst)
+                    .addComponent(addDst))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 394, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addDst, delDst});
+
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(addDst)
+                        .addGap(45, 45, 45)
+                        .addComponent(delDst)
+                        .addContainerGap(139, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -174,10 +473,12 @@ public class MainFrame extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(startBtn)
                 .addContainerGap())
         );
@@ -198,7 +499,97 @@ public class MainFrame extends javax.swing.JFrame
 		}	
     }//GEN-LAST:event_formWindowClosing
 
-    /**
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_startBtnActionPerformed
+    {//GEN-HEADEREND:event_startBtnActionPerformed
+        boolean isStart = startBtn.isSelected();
+		dock.start(isStart);
+		
+    }//GEN-LAST:event_startBtnActionPerformed
+
+    private void rbTcpActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbTcpActionPerformed
+    {//GEN-HEADEREND:event_rbTcpActionPerformed
+        if(rbTcp.isSelected())
+		{
+			jPanel5.removeAll();
+			jPanel1.setBorder(BorderFactory.createTitledBorder("TCP"));
+			jPanel5.add(jPanel1);
+			jPanel5.updateUI();
+		}
+    }//GEN-LAST:event_rbTcpActionPerformed
+
+    private void rbFtpActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbFtpActionPerformed
+    {//GEN-HEADEREND:event_rbFtpActionPerformed
+        if(rbFtp.isSelected())
+		{
+			jPanel5.removeAll();
+			jPanel5.add(jPanel4);
+			jPanel5.updateUI();
+		}
+    }//GEN-LAST:event_rbFtpActionPerformed
+
+    private void rbUdpActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbUdpActionPerformed
+    {//GEN-HEADEREND:event_rbUdpActionPerformed
+        if(rbUdp.isSelected())
+		{
+			jPanel5.removeAll();
+			jPanel1.setBorder(BorderFactory.createTitledBorder("UDP"));
+			jPanel5.add(jPanel1);
+			jPanel5.updateUI();
+		}
+    }//GEN-LAST:event_rbUdpActionPerformed
+
+    private void addDstActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addDstActionPerformed
+    {//GEN-HEADEREND:event_addDstActionPerformed
+        boolean isSendData = sendData.isSelected();
+		boolean isSaveDb = saveDb.isSelected();
+		String startTimeStr = startTime.getText();
+		
+		boolean isDesRb = desRb.isSelected();
+		boolean isRsaRb = rsaRb.isSelected();
+		boolean isAesRb = aesRb.isSelected();
+
+		boolean isRbTcpSel = rbTcp.isSelected();
+		boolean isRbUdpSel = rbUdp.isSelected();
+		boolean isRbFtpSel = rbFtp.isSelected();
+		
+		if(isRbFtpSel)
+		{
+			String ftpServerIpTxt = ftpServerIp.getText();
+			String ftpServerPortTxt = ftpServerPort.getText();
+			String ftpUserNameTxt = ftpUserName.getText();
+			String ftpPasswordTxt = ftpPassword.getText();
+			String ftpPathTxt = ftpPath.getText();
+		}
+		else
+		{
+			String tuServerIp = serverIpTxt.getText();
+			String tuServerPort = serverPortTxt.getText();
+			String startTimeVal = startTime.getText();
+		}
+		
+    }//GEN-LAST:event_addDstActionPerformed
+
+    private void delDstActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_delDstActionPerformed
+    {//GEN-HEADEREND:event_delDstActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delDstActionPerformed
+
+    private void serverPortTxtActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_serverPortTxtActionPerformed
+    {//GEN-HEADEREND:event_serverPortTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serverPortTxtActionPerformed
+
+    private void setProperties()
+	{
+		String timeout = timeoutTxt.getText();
+		String serverIp = serverIpTxt.getText();
+		String serverPort = serverPortTxt.getText();
+		boolean isSendData = sendData.isSelected();
+		boolean isSaveDb = saveDb.isSelected();
+		String startTimeVal = startTime.getText();
+	}
+	
+	/**
     * @param args the command line arguments
     */
     public static void main(String args[])
@@ -242,18 +633,47 @@ public class MainFrame extends javax.swing.JFrame
 		});
 	}		
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addDst;
+    private javax.swing.JRadioButton aesRb;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JButton delDst;
+    private javax.swing.JRadioButton desRb;
+    private javax.swing.JTable dstTable;
+    private javax.swing.JTextField ftpPassword;
+    private javax.swing.JTextField ftpPath;
+    private javax.swing.JTextField ftpServerIp;
+    private javax.swing.JTextField ftpServerPort;
+    private javax.swing.JTextField ftpUserName;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JComboBox protoCb;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton rbFtp;
+    private javax.swing.JRadioButton rbTcp;
+    private javax.swing.JRadioButton rbUdp;
+    private javax.swing.JRadioButton rsaRb;
     private javax.swing.JCheckBox saveDb;
     private javax.swing.JCheckBox sendData;
-    private javax.swing.JTextField serverIp;
-    private javax.swing.JTextField serverPort;
-    private javax.swing.JButton startBtn;
+    private javax.swing.JTextField serverIpTxt;
+    private javax.swing.JTextField serverPortTxt;
+    private javax.swing.JToggleButton startBtn;
+    private javax.swing.JFormattedTextField startTime;
+    private javax.swing.JTextField timeoutTxt;
     // End of variables declaration//GEN-END:variables
 
 }
